@@ -25,7 +25,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     heightRatio = maxHeight / image.size[1]
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
-    newImage = image.resize((newWidth, newHeight))
+    newImage = image.resize((newHeight, newWidth))
     newImg = ImageOps.expand(newImage, border=10, fill="yellow")
     return newImg
 
