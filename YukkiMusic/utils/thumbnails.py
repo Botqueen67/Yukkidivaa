@@ -26,7 +26,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
     newImage = image.resize((newHeight, newWidth))
-    newImg = ImageOps.expand(newImage, border=10, fill="green")
+    newImg = ImageOps.expand(newImage, border=10, fill="yellow")
     return newImg
 
 
@@ -69,7 +69,7 @@ async def gen_thumb(videoid):
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
-        image2 = image1.convert("RGBA")
+        image2 = image1.convert("RGBA")        
         background = image2.filter(filter=ImageFilter.BoxBlur(35))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.8)
@@ -81,14 +81,15 @@ async def gen_thumb(videoid):
         y2 = Ycenter + 400
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((400, 400), Image.ANTIALIAS)
-        logo = ImageOps.expand(logo, border=10, fill="orange")
-        background.paste(logo, (170, 100))
+        pogo = ImageOps.expand(logo, border=10, fill="orange")
+        background.paste(pogo, (170, 100))
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
         font2 = ImageFont.truetype("assets/font2.ttf", 70)
         font3 = ImageFont.truetype("assets/font.ttf", 40)
         jokerman = ImageFont.truetype("assets/font2.ttf", 30)
         name_font = ImageFont.truetype("assets/font.ttf", 35)
+        
         para = textwrap.wrap(title, width=25)
         j = 0
         draw.text(
