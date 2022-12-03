@@ -85,14 +85,13 @@ async def gen_thumb(videoid):
         newsize = (400,400)
         pogo = logo.resize(newsize)        
         height,width = pogo.size
-# creating luminous image
         lum_img = Image.new('L', [height,width] , 0) 
         draww = ImageDraw.Draw(lum_img)
         draww.pieslice([(0,0), (height,width)], 0, 360, fill=255)
         img_arr = np.array(pogo)
         lum_img_arr = np.array(lum_img)
         final_img_arr = np.dstack((img_arr, lum_img_arr))
-        gogo = Image.fromarray(final_img_arr)        
+        gogo = Image.fromarray(final_img_arr)
         background.paste(gogo, (120, 100))
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
