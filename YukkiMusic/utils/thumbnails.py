@@ -81,7 +81,7 @@ async def gen_thumb(videoid):
         y2 = Ycenter + 400
         logo = youtube.crop((x1, y1, x2, y2)) 
         logo.thumbnail((500, 500), Image.ANTIALIAS)           
-        im_a = Image.open("assets/Mask.jpg").convert('L').resize(logo.size)
+        im_a = Image.open("assets/Mask2.jpg").convert('L').resize(logo.size)
         im_rgba = logo.copy()
         im_rgba.putalpha(im_a)
         background.paste(im_rgba, (170, 100))
