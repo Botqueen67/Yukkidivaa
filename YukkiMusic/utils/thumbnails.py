@@ -84,11 +84,11 @@ async def gen_thumb(videoid):
         logo = youtube.crop((x1, y1, x2, y2))
         newsize = (400,400)
         pogo = logo.resize(newsize)        
-        h,w = img.size  
+        200,200 = img.size  
 # creating luminous image
-        lum_img = Image.new('L',[h,w] ,0) 
-        draw = ImageDraw.Draw(lum_img)
-        draw.pieslice([(0,0),(h,w)],0,360,fill=255)
+        lum_img = Image.new('L',200,200] ,0) 
+        draww = ImageDraw.Draw(lum_img)
+        draww.pieslice([(0,0),(200,200)],0,360,fill=255)
         img_arr = np.array(pogo)
         lum_img_arr = np.array(lum_img)
         final_img_arr = np.dstack((img_arr, lum_img_arr))
