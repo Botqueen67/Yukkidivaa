@@ -11,6 +11,9 @@ import os
 import re
 import textwrap
 
+import cv2
+import numpy as np
+
 import aiofiles
 import aiohttp
 from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
@@ -81,10 +84,26 @@ async def gen_thumb(videoid):
         y2 = Ycenter + 400
         logo = youtube.crop((x1, y1, x2, y2)) 
         logo.thumbnail((500, 500), Image.ANTIALIAS)           
-        im_a = Image.open("assets/Mask3.jpg").convert('L').resize(logo.size)
+        im_a = Image.open("assets/Mask2.jpg").convert('L').resize(logo.size)
         im_rgba = logo.copy()
         im_rgba.putalpha(im_a)
-        background.paste(im_rgba, (120, 100))
+        # load image
+        imgg = cv2.imread(im_rgba)
+        gray = cv2.cvtColor(imgg, cv2.COLOR_BGR2GRAY) # convert to grayscale
+
+# threshold to get just the signature
+        retval, thresh_gray = cv2.threshold(gray, thresh=100, maxval=255, type=cv2.THRESH_BINARY)
+
+# find where the signature is and make a cropped region
+        points = np.argwhere(thresh_gray==0) # find where the black pixels are
+        points = np.fliplr(points) # store them in x,y coordinates instead of row,col indices
+        x, y, w, h = cv2.boundingRect(points) # create a rectangle around those points
+        x, y, w, h = x-10, y-10, w+20, h+20 # make the box a little bigger
+        crop = gray[y:y+h, x:x+w] # create a cropped region of the gray image
+
+# get the thresholded crop
+        retval, thresh_crop = cv2.threshold(crop, thresh=200, maxval=255, type=cv2.THRESH_BINARY)
+        background.paste(thresh_crop, (120, 100))
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
         font2 = ImageFont.truetype("assets/font2.ttf", 70)
