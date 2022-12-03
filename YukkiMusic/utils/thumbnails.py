@@ -84,7 +84,7 @@ async def gen_thumb(videoid):
         logo = youtube.crop((x1, y1, x2, y2))
         newsize = (400,400)
         pogo = logo.resize(newsize)        
-        200,200 = img.size  
+        (200,200) = img.size  
 # creating luminous image
         lum_img = Image.new('L',200,200] ,0) 
         draww = ImageDraw.Draw(lum_img)
