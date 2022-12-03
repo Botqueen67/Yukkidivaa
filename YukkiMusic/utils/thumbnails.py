@@ -79,10 +79,9 @@ async def gen_thumb(videoid):
         y1 = Ycenter - 400
         x2 = Xcenter + 400
         y2 = Ycenter + 400
-        logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((400, 400), Image.ANTIALIAS)    
-        im_a = Image.open("assets/Mask.jpg").convert('L').resize(logo.size)
-        im_rgba = logo.copy()
+        pogo = youtube.crop((x1, y1, x2, y2)) 
+        im_a = Image.open("assets/Mask.jpg").convert('L').resize(pogo.size)
+        im_rgba = pogo.copy()
         im_rgba.putalpha(im_a)
         background.paste(im_rgba, (170, 100))
         draw = ImageDraw.Draw(background)
