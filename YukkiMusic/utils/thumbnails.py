@@ -84,7 +84,7 @@ async def gen_thumb(videoid):
         im_a = Image.open("assets/Mask2.jpg").convert('L').resize(logo.size)
         im_rgba = logo.copy()
         im_rgba.putalpha(im_a)
-        background.paste(im_rgba, (170, 100))
+        background.paste(im_rgba, (120, 100))
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
         font2 = ImageFont.truetype("assets/font2.ttf", 70)
