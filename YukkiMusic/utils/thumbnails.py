@@ -104,8 +104,8 @@ async def gen_thumb(videoid):
         image3 = Image.fromarray(final_img_arr)
         image3 = image3.resize((500,500))
         
-        image2.paste(image3, (50,70), mask = image3)
-        image2.paste(circle, (0,0), mask = circle)        
+        image2.paste(image3, (50,70))
+        image2.paste(circle, (0,0))        
        
         draw = ImageDraw.Draw(image2)
         font = ImageFont.truetype("assets/font2.ttf", 40)
