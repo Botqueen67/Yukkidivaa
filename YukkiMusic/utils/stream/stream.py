@@ -171,11 +171,11 @@ async def stream(
             )
             position = len(db.get(chat_id)) - 1
             img = await gen_thumb(vidid)                
-                  await app.send_photo(
-                 original_chat_id,
-                 photo=img,
-                 caption=_["queue_4"].format(
-                    position, title[:30], duration_min, user_name
+                 await app.send_photo(
+                original_chat_id,
+                photo=img,
+                caption=_["queue_4"].format(
+                   position, title[:30], duration_min, user_name
                 ),
             )
         else:
