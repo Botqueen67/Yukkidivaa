@@ -35,6 +35,14 @@ from YukkiMusic.utils.thumbnails import gen_thumb
 
 from youtubesearchpython.__future__ import VideosSearch
 
+async with aiohttp.ClientSession() as session:
+            async with session.get(thumbnail) as resp:
+                if resp.status == 200:
+                    f = await aiofiles.open(
+                        f"cache/thumb{videoid}.png", mode="wb"
+                    )
+                    await f.write(await resp.read())
+                    await f.close()
 
 async def stream(
     _,
@@ -178,7 +186,7 @@ async def stream(
             position = len(db.get(chat_id)) - 1         
             await app.send_photo(
                 original_chat_id,
-                photo=Image.open(f"cache/thumb{videoid}.png"),
+                photo = Image.open(f"cache/thumb{videoid}.png"),
                 caption=_["queue_4"].format(
                    position, title[:30], duration_min, user_name
                 ),
