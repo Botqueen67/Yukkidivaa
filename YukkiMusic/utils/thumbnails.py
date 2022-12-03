@@ -81,7 +81,7 @@ async def gen_thumb(videoid):
         y2 = Ycenter + 400
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((400, 400), Image.ANTIALIAS)
-        pogo = ImageOps.expand(logo, border=10, fill="orange")
+        pogo = ImageOps.expand(pogo, border=10, fill="orange")
         im_a = Image.new("L", logo.size, 0)
         draww = ImageDraw.Draw(im_a)
         draww.rectangle((200, 100, 695, 350), fill=255)
