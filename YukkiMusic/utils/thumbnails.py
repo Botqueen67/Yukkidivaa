@@ -84,7 +84,7 @@ async def gen_thumb(videoid):
         pogo = ImageOps.expand(logo, border=10, fill="orange")
         im_a = Image.new("L", pogo.size, 0)
         draww = ImageDraw.Draw(im_a)
-        draww.ellipse((240, 150, 360, 270), fill=255)
+        draww.ellipse((135, 45, 265, 175), fill=255)
         im_a_blur = im_a.filter(ImageFilter.GaussianBlur(4))
         im_rgba = pogo.copy()        
         im_rgba.putalpha(im_a_blur)
