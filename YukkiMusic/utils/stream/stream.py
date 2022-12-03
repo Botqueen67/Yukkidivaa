@@ -8,16 +8,20 @@
 # All rights reserved.
 
 import os
+import re
 from random import randint
 from typing import Union
 
 import aiofiles
 import aiohttp
 
+from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
+                 ImageFont, ImageOps)
+
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from config import QUEUE_IMG_URL
+from config import QUEUE_IMG_URL, YOUTUBE_IMG_URL, MUSIC_BOT_NAME
 from YukkiMusic import Carbon, YouTube, app
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.misc import db
