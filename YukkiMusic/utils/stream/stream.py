@@ -39,6 +39,12 @@ from YukkiMusic.utils.thumbnails import gen_thumb
 
 from youtubesearchpython.__future__ import VideosSearch
 
+def get_image(videoid):
+    if os.path.isfile(f"cache/{videoid}.png"):
+        return f"cache/{videoid}.png"
+    else:
+        return config.YOUTUBE_IMG_URL
+
 async def stream(
     _,
     mystic,
@@ -181,7 +187,7 @@ async def stream(
             position = len(db.get(chat_id)) - 1         
             await app.send_photo(
                 original_chat_id,
-                photo = Image.open(f"cache/thumb{videoid}.png"),
+                photo=Image.open(f"cache/thumb{videoid}.png"),
                 caption=_["queue_4"].format(
                    position, title[:30], duration_min, user_name
                 ),
