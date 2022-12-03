@@ -84,7 +84,7 @@ async def gen_thumb(videoid):
         pogo = ImageOps.expand(logo, border=10, fill="orange")
         im_a = Image.new("L", pogo.size, 0)
         draww = ImageDraw.Draw(im_a)
-        draww.rectangle((200, 100, 300, 200), fill=(0, 192, 192), outline=(255, 255, 255))
+        draww.rectangle((200, 100, 300, 200), fill=255)
         im_rgba = pogo.copy()        
         im_rgba.putalpha(im_a)
         background.paste(im_rgba, (170, 100))
