@@ -83,7 +83,7 @@ async def gen_thumb(videoid):
         logo.thumbnail((400, 400), Image.ANTIALIAS)
         pogo = ImageOps.expand(logo, border=10, fill="orange")
         img_resize = pogo.resize((youtube.width // 2, youtube.height // 2))
-        im_a = Image.new("L", img_resize.size, 0)
+        im_a = Image.open('https://telegra.ph//file/42cdcf6db31796a7c7c16.jpg').convert('L').resize(img_resize.size)
         draww = ImageDraw.Draw(im_a)
         draww.rectangle((200, 100, 695, 450), fill=255)
         img_resize.putalpha(im_a)
