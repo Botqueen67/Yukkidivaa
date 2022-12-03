@@ -11,6 +11,9 @@ import os
 from random import randint
 from typing import Union
 
+import aiofiles
+import aiohttp
+
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
@@ -29,6 +32,8 @@ from YukkiMusic.utils.inline.playlist import close_markup
 from YukkiMusic.utils.pastebin import Yukkibin
 from YukkiMusic.utils.stream.queue import put_queue, put_queue_index
 from YukkiMusic.utils.thumbnails import gen_thumb
+
+from youtubesearchpython.__future__ import VideosSearch
 
 
 async def stream(
