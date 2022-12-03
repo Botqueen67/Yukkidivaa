@@ -75,24 +75,38 @@ async def gen_thumb(videoid):
         background = image2.filter(filter=ImageFilter.BoxBlur(35))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.8)
-        Xcenter = youtube.width / 2
-        Ycenter = youtube.height / 2
-        x1 = Xcenter - 400
-        y1 = Ycenter - 400
-        x2 = Xcenter + 400
-        y2 = Ycenter + 400
-        logo = youtube.crop((x1, y1, x2, y2))
-        newsize = (400,400)
-        pogo = logo.resize(newsize)        
-        height,width = pogo.size
-        lum_img = Image.new('L', [height,width] , 0)
+        image2 = background
+        
+        circle = Image.open("assets/circle.png")
+        
+        # changing circle color
+        im = circle
+        im = im.convert('RGBA')
+        color = make_col()
+     
+        data = np.array(im)
+        red, green, blue, alpha = data.T        
+        
+        white_areas = (red == 255) & (blue == 255) & (green == 255)
+        data[..., :-1][white_areas.T] = color
+        
+        im2 = Image.fromarray(data)        
+        circle = im2
+        # done
+        
+        image3 = image1.crop((280,0,1000,720))
+        lum_img = Image.new('L', [720,720] , 0)
         draww = ImageDraw.Draw(lum_img)
-        draww.pieslice([(0,0), (height,width)], 0, 360, fill=255)
-        img_arr = np.array(pogo)
+        draww.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
+        img_arr = np.array(image3)
         lum_img_arr = np.array(lum_img)
-        final_img_arr = np.dstack((img_arr, lum_img_arr))
-        gogo = Image.fromarray(final_img_arr)
-        background.paste(gogo, (120, 100))
+        final_img_arr = np.dstack((img_arr,lum_img_arr))
+        image3 = Image.fromarray(final_img_arr)
+        image3 = image3.resize((500,500))
+        
+        image2.paste(image3, (50,70), mask = image3)
+        image2.paste(circle, (0,0), mask = circle)        
+       
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
         font2 = ImageFont.truetype("assets/font2.ttf", 70)
