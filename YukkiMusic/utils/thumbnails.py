@@ -87,7 +87,7 @@ async def gen_thumb(videoid):
         draww.ellipse((140, 50, 260, 170), fill=255)
         im_rgba = pogo.copy()
         im_rgba.putalpha(im_a)
-        im_rgba_crop = im_rgba.crop((140, 50, 260, 170))
+        im_rgba_crop = im_rgba.crop((240, 150, 360, 270))
         background.paste(im_rgba_crop, (170, 100))
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
