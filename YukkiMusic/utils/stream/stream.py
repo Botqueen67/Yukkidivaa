@@ -170,9 +170,11 @@ async def stream(
                 "video" if video else "audio",
             )
             position = len(db.get(chat_id)) - 1
-            await app.send_message(
-                original_chat_id,
-                _["queue_4"].format(
+            img = await gen_thumb(vidid)                
+                  await app.send_photo(
+                 original_chat_id,
+                 photo=img,
+                 caption=_["queue_4"].format(
                     position, title[:30], duration_min, user_name
                 ),
             )
