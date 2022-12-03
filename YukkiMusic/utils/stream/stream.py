@@ -39,15 +39,6 @@ from YukkiMusic.utils.thumbnails import gen_thumb
 
 from youtubesearchpython.__future__ import VideosSearch
 
-async with aiohttp.ClientSession() as session:
-            async with session.get(thumbnail) as resp:
-                if resp.status == 200:
-                    f = await aiofiles.open(
-                        f"cache/thumb{videoid}.png", mode="wb"
-                    )
-                    await f.write(await resp.read())
-                    await f.close()
-
 async def stream(
     _,
     mystic,
