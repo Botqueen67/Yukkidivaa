@@ -11,6 +11,8 @@ import os
 import re
 import textwrap
 
+import numpy as np
+
 import aiofiles
 import aiohttp
 from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
@@ -79,12 +81,21 @@ async def gen_thumb(videoid):
         y1 = Ycenter - 400
         x2 = Xcenter + 400
         y2 = Ycenter + 400
-        logo = youtube.crop((x1, y1, x2, y2)) 
-        logo.thumbnail((500, 500), Image.ANTIALIAS)           
-        im_a = Image.open("assets/Mask3.jpg").convert('L').resize(logo.size)
-        im_rgba = logo.copy()
-        im_rgba.putalpha(im_a)      
-        background.paste(im_rgba, (120, 100))
+        logo = youtube.crop((x1, y1, x2, y2))
+        newsize = (400,400)
+        pogo = logo.resize(newsize)
+        
+        h,w = img.size
+  
+# creating luminous image
+        lum_img = Image.new('L',[h,w] ,0) 
+        draw = ImageDraw.Draw(lum_img)
+        draw.pieslice([(0,0),(h,w)],0,360,fill=255)
+        img_arr = np.array(pogo)
+        lum_img_arr = np.array(lum_img)
+        final_img_arr = np.dstack((img_arr, lum_img_arr))
+        gogo = Image.fromarray(final_img_arr)        
+        background.paste(gogo, (120, 100))
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
         font2 = ImageFont.truetype("assets/font2.ttf", 70)
