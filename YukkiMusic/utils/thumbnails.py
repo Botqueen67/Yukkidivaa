@@ -39,7 +39,21 @@ def changeImageSize(maxWidth, maxHeight, image):
     newImage = image.resize((newHeight, newWidth))
     newImg = ImageOps.expand(newImage, border=10, fill="yellow")
     return newImg
+    
+def truncate(text):
+    list = text.split(" ")
+    text1 = ""
+    text2 = ""    
+    for i in list:
+        if len(text1) + len(i) < 30:        
+            text1 += " " + i
+        elif len(text2) + len(i) < 30:       
+            text2 += " " + i
 
+    text1 = text1.strip()
+    text2 = text2.strip()     
+    return [text1,text2] 
+    
 
 async def gen_thumb(videoid):
     if os.path.isfile(f"cache/{videoid}.png"):
@@ -116,77 +130,37 @@ async def gen_thumb(videoid):
         image2.paste(image3, (50,70))
         image2.paste(circle, (0,0))        
        
-        draw = ImageDraw.Draw(image2)
-        font = ImageFont.truetype("assets/font2.ttf", 40)
+        
+        font1 = ImageFont.truetype("assets/font2.ttf", 40)
         font2 = ImageFont.truetype("assets/font2.ttf", 70)
         font3 = ImageFont.truetype("assets/font.ttf", 40)
-        jokerman = ImageFont.truetype("assets/font2.ttf", 30)
-        name_font = ImageFont.truetype("assets/font.ttf", 35)
+        font4 = ImageFont.truetype("assets/font2.ttf", 30)
         
-        para = textwrap.wrap(title, width=25)
-        j = 0
-        draw.text(
-            (10, 10), f"{MUSIC_BOT_NAME}", fill="white", font=font
-        )
-        draw.text(
-            (110, 1000),
-            "Enjoy the song!",
-            fill="white",
-            stroke_width=2,
-            stroke_fill="black",
-            font=font2,
-        )
-        for line in para:
-            if j == 1:
-                j += 1
-                draw.text(
-                    (50, 690),
-                    f"{line}",
-                    fill="white",
-                    stroke_width=1,
-                    stroke_fill="black",
-                    font=font3,
-                )
-            if j == 0:
-                j += 1
-                draw.text(
-                    (50, 630),
-                    f"{line}",
-                    fill="white",
-                    stroke_width=1,
-                    stroke_fill="black",
-                    font=font3,
-                )
+        image4 = ImageDraw.Draw(image2)
+        image4.text((10, 10), "DIVU MUSIC", fill="white", font = font1, align ="left") 
+        image4.text((150, 1000), "•KUTTYMA•", fill="white", font = font2, stroke_width=2, stroke_fill="white", align ="left")        
+       
+                    # title
+        title1 = truncate(title)
+        image4.text((50, 630), text=title1[0], fill="white", stroke_width=1, stroke_fill="white",font = font3, align ="left") 
+        image4.text((50, 690), text=title1[1], fill="white", stroke_width=1, stroke_fill="white", font = font3, align ="left") 
 
-        draw.text(
-            (100, 790),
-            f"Views : {views[:23]}",
-            (255, 255, 255),
-            font=jokerman,
-            stroke_width=1,
-            stroke_fill="black",
-        )
-        draw.text(
-            (100, 840),
-            f"Duration : {duration[:23]} Mins",
-            (255, 255, 255),
-            font=jokerman,
-            stroke_width=1,
-            stroke_fill="black",
-        )
-        draw.text(
-            (100, 890),
-            f"Channel : {channel}",
-            (255, 255, 255),
-            font=jokerman,
-            stroke_width=1,
-            stroke_fill="black",
-        )
-        try:
-            os.remove(f"cache/thumb{videoid}.png")
-        except:
-            pass
-        background.save(f"cache/{videoid}.png")
-        return f"cache/{videoid}.png"
-    except Exception:
-        return YOUTUBE_IMG_URL
+            # description
+        views = f"Views : {views}"
+        duration = f"Duration : {duration} Mins"
+        channel = f"Channel : {channel}"
+
+        image4.text((100, 790), text=views, fill="white", font = font4, align ="left") 
+        image4.text((100, 840), text=duration, fill="white", font = font4, align ="left") 
+        image4.text((100, 890), text=channel, fill="white", font = font4, align ="left")
+            
+        image2 = ImageOps.expand(image2,border=20,fill=make_col())
+        image2 = image2.convert('RGB')
+        image2.save(f"cache/{videoid}.jpg")
+        file = f"cache/{videoid}.jpg"
+        #os.remove(file)
+
+        return file
+    except Exception as e:
+        print(e)
+        return "YOUTUBE_IMG_URL"
