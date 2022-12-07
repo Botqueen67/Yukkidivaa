@@ -237,7 +237,7 @@ async def stream(
             position = len(db.get(chat_id)) - 1
             await app.send_photo(
                 original_chat_id,
-                photo=QUEUE_IMG_URL
+                photo=QUEUE_IMG_URL,
                 caption=_["queue_4"].format(
                    position, title[:30], duration_min, user_name
                 ),
