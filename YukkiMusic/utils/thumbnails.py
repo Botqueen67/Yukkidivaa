@@ -7,7 +7,9 @@
 #
 # All rights reserved.
 
+import asyncio
 import os
+import random
 import re
 import textwrap
 
@@ -21,6 +23,13 @@ from youtubesearchpython.__future__ import VideosSearch
 
 from config import MUSIC_BOT_NAME, YOUTUBE_IMG_URL
 
+def make_col():
+    return (random.randint(0,255),random.randint(0,255),random.randint(0,255))
+    
+def remove_non_ascii(text):
+    new_val = text.encode("ascii", "ignore")
+    updated_str = new_val.decode()
+    return updated_str
 
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
