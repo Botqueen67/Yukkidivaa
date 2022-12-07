@@ -117,7 +117,7 @@ async def gen_thumb(videoid):
         circle = im2
         # done
         
-        image3 = image1.crop((280,0,1000,720))
+        image3 = image1.crop((280,0,720,1000))
         lum_img = Image.new('L', [720,720] , 0)
         draww = ImageDraw.Draw(lum_img)
         draww.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
@@ -138,21 +138,21 @@ async def gen_thumb(videoid):
         
         image4 = ImageDraw.Draw(image2)
         image4.text((10, 10), "DIVU MUSIC", fill="white", font = font1, align ="left") 
-        image4.text((150, 1000), "•KUTTYMA•", fill="white", font = font2, stroke_width=2, stroke_fill="white", align ="left")        
+        image4.text((150, 1000), "Enjoy the song!", fill="white", font = font2, stroke_width=2, stroke_fill="white", align ="left")        
        
                     # title
         title1 = truncate(title)
-        image4.text((50, 630), text=title1[0], fill="white", stroke_width=1, stroke_fill="white",font = font3, align ="left") 
-        image4.text((50, 690), text=title1[1], fill="white", stroke_width=1, stroke_fill="white", font = font3, align ="left") 
+        image4.text((50, 650), text=title1[0], fill="white", stroke_width=1, stroke_fill="white",font = font3, align ="left") 
+        image4.text((50, 710), text=title1[1], fill="white", stroke_width=1, stroke_fill="white", font = font3, align ="left") 
 
             # description
         views = f"Views : {views}"
         duration = f"Duration : {duration} Mins"
         channel = f"Channel : {channel}"
 
-        image4.text((100, 790), text=views, fill="white", font = font4, align ="left") 
-        image4.text((100, 840), text=duration, fill="white", font = font4, align ="left") 
-        image4.text((100, 890), text=channel, fill="white", font = font4, align ="left")
+        image4.text((100, 810), text=views, fill="white", font = font4, align ="left") 
+        image4.text((100, 860), text=duration, fill="white", font = font4, align ="left") 
+        image4.text((100, 910), text=channel, fill="white", font = font4, align ="left")
             
         image2 = ImageOps.expand(image2,border=20,fill=make_col())
         image2 = image2.convert('RGB')
