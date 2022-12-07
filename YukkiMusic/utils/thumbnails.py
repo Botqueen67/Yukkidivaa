@@ -123,7 +123,7 @@ async def gen_thumb(videoid):
         draww.pieslice([(0,0), (440,440)], 0, 360, fill = 255, outline = "white")
         img_arr = np.array(image3)
         lum_img_arr = np.array(lum_img)
-        final_img_arr = np.dstack((img_arr,lum_img_arr))
+        final_img_arr = np.dstack((lum_img_arr,img_arr))
         image3 = Image.fromarray(final_img_arr)
         image3 = image3.resize((500,500))
         
