@@ -117,7 +117,7 @@ async def gen_thumb(videoid):
         circle = im2
         # done
         
-        image3 = image1.crop((280,0,720,1000))
+        image3 = image1.crop((280,0,720,440))
         lum_img = Image.new('L', [720,720] , 0)
         draww = ImageDraw.Draw(lum_img)
         draww.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
