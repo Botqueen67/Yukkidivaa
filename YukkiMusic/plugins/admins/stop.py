@@ -35,9 +35,5 @@ async def stop_music(cli, message: Message, _, chat_id):
     await set_loop(chat_id, 0)
     await message.reply_text(
         _["admin_9"].format(message.from_user.mention)
-        [
-          InlineKeyboardButton(
-              text=_["CLOSEMENU_BUTTON"], callback_data="close"
-          )
-        ],
+        
     )
