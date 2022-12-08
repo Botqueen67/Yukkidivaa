@@ -1,7 +1,7 @@
 import random
 
 from pyrogram import filters
-from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
+from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
 from config import (AUTO_DOWNLOADS_CLEAR, BANNED_USERS,
                     SOUNCLOUD_IMG_URL, STREAM_IMG_URL,
@@ -160,6 +160,12 @@ async def del_back_playlist(client, CallbackQuery, _):
         await set_loop(chat_id, 0)
         await CallbackQuery.message.reply_text(
             _["admin_9"].format(mention)
+            [
+            InlineKeyboardButton(
+                text=_["CLOSEMENU_BUTTON"], callback_data="close"
+            ),
+            ],
+          
         )
     elif command == "Mute":
         if await is_muted(chat_id):
