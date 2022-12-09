@@ -117,10 +117,10 @@ async def gen_thumb(videoid):
             image2.paste(circle, (0,0), mask = circle)
 
             # fonts
-            font1 = ImageFont.truetype('AnonX/assets/font.ttf', 30)
-            font2 = ImageFont.truetype('AnonX/assets/font2.ttf', 70)
-            font3 = ImageFont.truetype('AnonX/assets/font2.ttf', 40)
-            font4 = ImageFont.truetype('AnonX/assets/font2.ttf', 35)
+            font1 = ImageFont.truetype('assets/font.ttf', 30)
+            font2 = ImageFont.truetype('assets/font2.ttf', 70)
+            font3 = ImageFont.truetype('assets/font2.ttf', 40)
+            font4 = ImageFont.truetype('assets/font2.ttf', 35)
 
             image4 = ImageDraw.Draw(image2)
             image4.text((10, 10), "MISS SOFIA", fill="white", font = font1, align ="left") 
@@ -196,7 +196,7 @@ async def gen_qthumb(videoid):
             background = enhancer.enhance(0.6)
             image2 = background
                                                                                             
-            circle = Image.open("AnonX/assets/circle.png")
+            circle = Image.open("assets/circle.jpg")
 
             # changing circle color
             im = circle
@@ -228,10 +228,10 @@ async def gen_qthumb(videoid):
             image2.paste(circle, (0,0), mask = circle)
 
             # fonts
-            font1 = ImageFont.truetype('AnonX/assets/font.ttf', 30)
-            font2 = ImageFont.truetype('AnonX/assets/font2.ttf', 70)
-            font3 = ImageFont.truetype('AnonX/assets/font2.ttf', 40)
-            font4 = ImageFont.truetype('AnonX/assets/font2.ttf', 35)
+            font1 = ImageFont.truetype('assets/font.ttf', 30)
+            font2 = ImageFont.truetype('assets/font2.ttf', 70)
+            font3 = ImageFont.truetype('assets/font2.ttf', 40)
+            font4 = ImageFont.truetype('assets/font2.ttf', 35)
 
             image4 = ImageDraw.Draw(image2)
             image4.text((10, 10), "MISS SOFIA", fill="white", font = font1, align ="left") 
