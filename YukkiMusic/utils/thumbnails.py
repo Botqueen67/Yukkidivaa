@@ -22,7 +22,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     heightRatio = maxHeight / image.size[1]
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
-    newImage = image.resize((newWidth, newHeight))
+    newImage = image.resize((newHeight, newWidth))
     return newImage
 
 def truncate(text):
@@ -78,7 +78,7 @@ async def gen_thumb(videoid):
                         await f.close()
 
             youtube = Image.open(f"cache/thumb{videoid}.jpg")
-            image1 = changeImageSize(1280, 720, youtube)
+            image1 = changeImageSize(720, 1280, youtube)
             image2 = image1.convert("RGBA")
             background = image2.filter(filter=ImageFilter.BoxBlur(30))
             enhancer = ImageEnhance.Brightness(background)
