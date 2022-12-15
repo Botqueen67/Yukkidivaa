@@ -97,9 +97,9 @@ async def gen_thumb(videoid):
         draw.text(
             (110, 460),
             "Enjoy the song!",
-            fill="white",
+            fill="black",
             stroke_width=2,
-            stroke_fill="black",
+            stroke_fill="yellow",
             font=font2,
         )        
         for line in para:
