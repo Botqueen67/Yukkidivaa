@@ -99,7 +99,7 @@ async def gen_thumb(videoid):
             "Enjoy the song!",
             fill="black",
             stroke_width=2,
-            stroke_fill="yellow",
+            stroke_fill="lime",
             font=font2,
         )        
         for line in para:
