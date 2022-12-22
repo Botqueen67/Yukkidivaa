@@ -36,6 +36,6 @@ async def pause_admin(cli, message: Message, _, chat_id):
     await music_off(chat_id)
     await Yukki.pause_stream(chat_id)
     await message.reply_photo(
-        photo=QUEUE_IMG_URL, 
+        photo=PAUSE_IMG_URL, 
         caption=_["admin_2"].format(message.from_user.mention)
     )
