@@ -10,7 +10,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from config import BANNED_USERS
+from config import BANNED_USERS, RESUME_IMG_URL
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
@@ -35,6 +35,7 @@ async def resume_com(cli, message: Message, _, chat_id):
         return await message.reply_text(_["admin_3"])
     await music_on(chat_id)
     await Yukki.resume_stream(chat_id)
-    await message.reply_text(
-        _["admin_4"].format(message.from_user.mention)
+    await message.reply_photo(
+        photo=RESUME_IMG_URL
+        caption=_["admin_4"].format(message.from_user.mention)
     )
