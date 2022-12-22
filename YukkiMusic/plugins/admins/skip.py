@@ -128,7 +128,7 @@ async def skip(cli, message: Message, _, chat_id):
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
-                check[0]["dur"],
+                duration_min,
                 user,
                 f"https://t.me/{app.username}?start=info_{videoid}",
             ),
