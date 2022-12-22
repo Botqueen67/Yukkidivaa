@@ -169,6 +169,8 @@ START_IMG_URL = getenv("START_IMG_URL", None)
 
 PAUSE_IMG_URL = getenv("PAUSE_IMG_URL", None)
 
+RESUME_IMG_URL = getenv("RESUME_IMG_URL", None)
+
 QUEUE_IMG_URL = getenv("QUEUE_IMG_URL", None)
 
 PING_IMG_URL = getenv(
