@@ -153,7 +153,7 @@ async def del_back_playlist(client, CallbackQuery, _):
         await music_on(chat_id)
         await Yukki.resume_stream(chat_id)
         await CallbackQuery.message.reply_photo(
-            photo=RESUME_IMG_URL
+            photo=RESUME_IMG_URL,
             caption=_["admin_4"].format(mention)
         )
     elif command == "Stop" or command == "End":
