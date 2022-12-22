@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
 from config import (AUTO_DOWNLOADS_CLEAR, BANNED_USERS,
-                    SOUNCLOUD_IMG_URL, STREAM_IMG_URL,
+                    SOUNCLOUD_IMG_URL, STREAM_IMG_URL, PAUSE_IMG_URL,
                     TELEGRAM_AUDIO_URL, TELEGRAM_VIDEO_URL, adminlist)
 from YukkiMusic import YouTube, app
 from YukkiMusic.core.call import Yukki
@@ -140,8 +140,9 @@ async def del_back_playlist(client, CallbackQuery, _):
         await CallbackQuery.answer()
         await music_off(chat_id)
         await Yukki.pause_stream(chat_id)
-        await CallbackQuery.message.reply_text(
-            _["admin_2"].format(mention)
+        await CallbackQuery.message.reply_photo(
+            photo=PAUSE_IMG_URL,
+            caption=_["admin_2"].format(mention)
         )
     elif command == "Resume":
         if await is_music_playing(chat_id):
