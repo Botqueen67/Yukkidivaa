@@ -8,9 +8,12 @@
 # All rights reserved.
 
 import random
+import math
 
 from pyrogram.types import InlineKeyboardButton
 from config import SUPPORT_GROUP, SUPPORT_CHANNEL
+
+from YukkiMusic.utils.formatters import time_to_seconds
 
 selections = [
     "▄▀▀▄▀▀▄▀▀▄▀▀▄▀▀▄▀▀▄",
@@ -32,7 +35,31 @@ selections = [
 
 
 def stream_markup_timer(_, videoid, chat_id, played, dur):
-    bar = random.choice(selections)
+    played_sec = time_to_seconds(played)
+    duration_sec = time_to_seconds(dur)
+    percentage = (played_sec / duration_sec) * 100
+    anon = math.floor(percentage)
+    if 0 < anon <= 10:
+        bar = "◉—————————"
+    elif 10 < anon < 20:
+        bar = "—◉————————"
+    elif 20 <= anon < 30:
+        bar = "——◉———————"
+    elif 30 <= anon < 40:
+        bar = "———◉——————"
+    elif 40 <= anon < 50:
+        bar = "————◉—————"
+    elif 50 <= anon < 60:
+        bar = "—————◉————"
+    elif 60 <= anon < 70:
+        bar = "——————◉———"
+    elif 70 <= anon < 80:
+        bar = "———————◉——"
+    elif 80 <= anon < 95:
+        bar = "————————◉—"
+    else:
+        bar = "—————————◉"
+    barr = random.choice(selections)
     buttons = [
         [
             InlineKeyboardButton(
